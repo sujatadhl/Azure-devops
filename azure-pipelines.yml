@@ -19,3 +19,11 @@ steps:
     npm install
     node index.js 
   displayName: 'npm install and build'
+
+jobs:
+- deployment: VMDeploy
+  displayName: Deploy to VM
+  environment: 
+   name: VMenv
+   resourceName: AdexSuite
+   resourceType: virtualMachine
