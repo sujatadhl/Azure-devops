@@ -14,15 +14,13 @@ stages:
     jobs:
     - job: InstallDependencies
       steps:
-      - script: |
-          npm install
+      - script: npm install
         displayName: 'Install Dependencies'
     
   - stage: Build
     jobs:
     - job: Build
       steps:
-      - script: |
-          node index.js
+      - script: node index.js
         displayName: 'Build the project'  
           
