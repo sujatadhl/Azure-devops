@@ -12,9 +12,15 @@ pool:
 stages:
   - stage: Build
     jobs:
-    - job: Build
+    - job: Install Dependencies
       steps:
       - script: |
           npm install
-          node index.js 
+    
+  - stage: Build
+    jobs:
+    - job: Build
+      steps:
+      - script: |
+          node index.js
           
