@@ -16,6 +16,7 @@ stages:
       steps:
       - script: |
           npm install
+        displayName: 'Install Dependencies'
     
   - stage: Build
     jobs:
@@ -23,4 +24,5 @@ stages:
       steps:
       - script: |
           node index.js
+        displayName: 'Build the project'  
           
