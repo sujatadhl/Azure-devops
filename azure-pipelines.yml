@@ -12,6 +12,11 @@ pool:
 stages:
   - stage: Install
     jobs:
+    - job: InstallNpm
+      steps:
+      - script: sudo apt install npm
+        displayName: 'Install npm'
+
     - job: InstallDependencies
       steps:
       - script: npm install
@@ -21,6 +26,12 @@ stages:
     jobs:
     - job: Build
       steps:
-      - script: node index.js
+      - script: nohup node index.js &
         displayName: 'Build the project'  
-          
+
+    - deployment: VMDeploy
+      displayName: Web deploy
+      dependsOn: Build
+      environment:
+        name:  vm
+        resourceType: VirtualMachine         
