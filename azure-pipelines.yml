@@ -28,3 +28,4 @@ stages:
           name: deploy
           resourceName: devops-demo
           resourceType: VirtualMachine
+          tags: web
