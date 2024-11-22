@@ -33,5 +33,6 @@ stages:
       displayName: Web deploy
       dependsOn: Build
       environment:
-        name:  deploy
-        resourceType: VirtualMachine         
+        name: deploy
+        resourceType: VirtualMachine    
+        tags: web    
