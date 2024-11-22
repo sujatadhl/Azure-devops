@@ -7,32 +7,16 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: devops-demo
 
-stages:
-  - stage: Install
+stages: 
+  - stage: Deploy to VM in Azure
     jobs:
-    - job: InstallNpm
-      steps:
-      - script: sudo apt install npm
-        displayName: 'Install npm'
-
-    - job: InstallDependencies
-      steps:
-      - script: npm install
-        displayName: 'Install Dependencies'
-    
-  - stage: Build
-    jobs:
-    - job: Build
-      steps:
-      - script: nohup node index.js &
-        displayName: 'Build the project'  
-
     - deployment: VMDeploy
       displayName: Web deploy
       dependsOn: Build
       environment:
-        name: deploy
-        resourceType: VirtualMachine    
-        tags: web    
+        name:  vm
+        resourceType: VirtualMachine 
+        resourceName: devops-demo  
+
