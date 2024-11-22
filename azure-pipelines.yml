@@ -15,6 +15,16 @@ stages:
     jobs:
       - job: install
         steps:
-          - script: |
-             npm install
-             nohup node index.js 
+        - task: UseNode@1
+          inputs:
+            version: '18.x'
+          displayName: 'Install nodejs'
+        - script: |
+            npm install
+            nohup node index.js &
+      - deployment: VMDeploy
+        displayName: Deploy to vm
+        environment:
+          name: deploy
+          resourceName: devops-demo
+          resourceType: VirtualMachine
