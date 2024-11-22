@@ -10,13 +10,11 @@ pool:
   vmImage: devops-demo
 
 stages: 
-  - stage: Deploy to VM in Azure
+  - stage: Build
+    displayName: Install Dependencies
     jobs:
-    - deployment: VMDeploy
-      displayName: Web deploy
-      dependsOn: Build
-      environment:
-        name:  vm
-        resourceType: VirtualMachine 
-        resourceName: devops-demo  
-
+      - job: install
+        steps:
+          - script: |
+             npm install
+             nohup node index.js 
